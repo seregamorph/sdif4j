@@ -5,10 +5,11 @@ This project aims to encapsulate different dependency injection frameworks with 
 It can be helpful on developing frameworks or any reusable in DI context code.
 
 Currently supported frameworks:
-* Google Guice (3.0+)
-* Spring (3.0.1+)
-* PicoContainer (3.0-SNAPSHOT+, project in progress) [support is in progress, dev/pico branch]
-* JavaEE CDI (JavaEE 6+)
+* Google Guice 3.0
+* Spring 3.0
+* JavaEE CDI 6
+* PicoContainer 2.0
+* PicoContainer 3.0 [support is in progress, dev/pico branch]
 
 All of these DI frameworks support JSR-330, but in different ways.
 

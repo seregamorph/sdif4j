@@ -29,6 +29,8 @@
 		<module>sdif4j-testing-cdi-se</module>
 		<module>sdif4j-testing-cdi-arquillian</module>
 		<module>sdif4j-testing-cdi-war</module>
+
+		<module>sdif4j-testing-pico2</module>
 	</modules>
 
 	<dependencyManagement>

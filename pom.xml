@@ -47,6 +47,8 @@
 		<!--3.0.1.RELEASE fails the test-->
 		<spring.version>3.0.1.RELEASE</spring.version>
 
+		<pico2.version>2.14.3</pico2.version>
+
 		<testng.version>6.8.7</testng.version>
 	</properties>
 
@@ -140,6 +142,13 @@
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-expression</artifactId>
 				<version>${spring.version}</version>
+			</dependency>
+
+			<!--picocontainer 2-->
+			<dependency>
+				<groupId>org.picocontainer</groupId>
+				<artifactId>picocontainer</artifactId>
+				<version>${pico2.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
