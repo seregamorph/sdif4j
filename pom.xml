@@ -71,6 +71,11 @@
 		<spring.version>3.0.1.RELEASE</spring.version>
 
 		<pico2.version>2.14.3</pico2.version>
+		<!--NOTE: no public releases available-->
+		<!--to build this branch clone and
+			mvn install-->
+		<!-- https://github.com/picocontainer/picocontainer.git -->
+		<pico3.version>3.0-SNAPSHOT</pico3.version>
 
 		<testng.version>6.8.7</testng.version>
 	</properties>
@@ -82,6 +87,7 @@
 		<module>sdif4j-cdi</module>
 		<module>sdif4j-guice</module>
 		<module>sdif4j-pico2</module>
+		<module>sdif4j-pico3</module>
 		<module>sdif4j-spring</module>
 
 		<module>sdif4j-all-no-cdi</module>
@@ -110,6 +116,11 @@
 			<dependency>
 				<groupId>org.sdif4j</groupId>
 				<artifactId>sdif4j-pico2</artifactId>
+				<version>${sdif4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.sdif4j</groupId>
+				<artifactId>sdif4j-pico3</artifactId>
 				<version>${sdif4j.version}</version>
 			</dependency>
 			<dependency>
@@ -200,6 +211,13 @@
 				<groupId>org.picocontainer</groupId>
 				<artifactId>picocontainer</artifactId>
 				<version>${pico2.version}</version>
+			</dependency>
+
+			<!--picocontainer 3-->
+			<dependency>
+				<groupId>com.picocontainer</groupId>
+				<artifactId>picocontainer</artifactId>
+				<version>${pico3.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
