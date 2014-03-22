@@ -12,10 +12,10 @@ import java.util.concurrent.atomic.AtomicReference;
 public class SpringInjector extends AbstractSpringInjector implements ApplicationContextAware {
 	private final AtomicReference<ApplicationContext> context = new AtomicReference<ApplicationContext>();
 
-	public SpringInjector() {
+	// explicit creation is not assumed
+	protected SpringInjector() {
 	}
 
-	@Override
 	public void setApplicationContext(ApplicationContext context) {
 		if (!this.context.compareAndSet(null, context)) {
 			throw new IllegalStateException("Already set context");

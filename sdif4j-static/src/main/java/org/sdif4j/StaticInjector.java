@@ -3,6 +3,9 @@ package org.sdif4j;
 import javax.annotation.Nonnull;
 import java.util.LinkedList;
 
+/**
+ * TODO javadoc
+ */
 public class StaticInjector {
 	private static final ThreadLocal<LinkedList<Pair<Object, Injector>>> threadLocalInjectorStack =
 			new InheritableThreadLocal<LinkedList<Pair<Object, Injector>>>();

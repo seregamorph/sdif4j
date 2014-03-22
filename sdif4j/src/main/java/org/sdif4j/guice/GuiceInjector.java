@@ -10,6 +10,7 @@ import com.google.inject.Singleton;
 public class GuiceInjector extends AbstractGuiceInjector {
 	private final com.google.inject.Injector injector;
 
+	// explicit creation is not assumed
 	@Inject
 	protected GuiceInjector(com.google.inject.Injector injector) {
 		if (injector == null) {
