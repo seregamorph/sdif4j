@@ -7,11 +7,5 @@
 
 	<context:mbean-export/>
 
-	<import resource="classpath:spring-sdif4j-context.xml"/>
-
-	<context:component-scan base-package="org.sdif4j.testing"/>
-
-	<bean id="key" class="java.lang.String">
-		<constructor-arg value="value"/>
-	</bean>
+	<context:component-scan base-package="org.sdif4j.spring"/>
 </beans>
