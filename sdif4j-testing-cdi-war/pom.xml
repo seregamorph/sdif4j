@@ -20,29 +20,27 @@
 			<groupId>org.sdif4j</groupId>
 			<artifactId>sdif4j</artifactId>
 		</dependency>
-		<!--/sdif4j-->
-
-		<dependency>
-			<groupId>org.testng</groupId>
-			<artifactId>testng</artifactId>
-			<version>${testng.version}</version>
-			<scope>compile</scope>
-		</dependency>
-
 		<dependency>
 			<groupId>org.sdif4j</groupId>
 			<artifactId>sdif4j-testing-common</artifactId>
 		</dependency>
+		<!--/sdif4j-->
 
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>javax.enterprise</groupId>
 			<artifactId>cdi-api</artifactId>
-			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<scope>compile</scope>
 		</dependency>
 	</dependencies>
 </project>

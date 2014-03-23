@@ -33,6 +33,7 @@
 		<javax-inject.version>1</javax-inject.version>
 		<servlet-api.version>2.5</servlet-api.version>
 		<cdi-api.version>1.0</cdi-api.version>
+		<javaee-api.version>6.0</javaee-api.version>
 
 		<jsr305.version>2.0.1</jsr305.version>
 
@@ -51,9 +52,13 @@
 
 		<!--different testing modules required for separate static spaces-->
 		<module>sdif4j-testing-common</module>
-		<module>sdif4j-testing-cdi-war</module>
+
 		<module>sdif4j-testing-guice</module>
 		<module>sdif4j-testing-spring</module>
+
+		<module>sdif4j-testing-cdi-se</module>
+		<module>sdif4j-testing-cdi-arquillian</module>
+		<module>sdif4j-testing-cdi-war</module>
 	</modules>
 
 	<dependencyManagement>
@@ -90,9 +95,28 @@
 				<version>${cdi-api.version}</version>
 				<scope>provided</scope>
 			</dependency>
+			<dependency>
+				<groupId>javax</groupId>
+				<artifactId>javaee-api</artifactId>
+				<version>${javaee-api.version}</version>
+				<scope>provided</scope>
+			</dependency>
 
 			<dependency>
-				<groupId>com.google.code.findbugs</groupId>
+				<groupId>org.jboss.spec</groupId>
+				<artifactId>jboss-javaee-6.0</artifactId>
+				<version>3.0.2.Final</version>
+				<type>pom</type>
+				<exclusions>
+					<exclusion>
+						<groupId>xalan</groupId>
+						<artifactId>xalan</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
+			<dependency>
+			<groupId>com.google.code.findbugs</groupId>
 				<artifactId>jsr305</artifactId>
 				<version>${jsr305.version}</version>
 			</dependency>
@@ -148,6 +172,14 @@
 			</dependency>
 
 			<!-- testing -->
+			<dependency>
+				<groupId>org.jboss.arquillian</groupId>
+				<artifactId>arquillian-bom</artifactId>
+				<version>1.1.3.Final</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>
+
 			<dependency>
 				<groupId>org.testng</groupId>
 				<artifactId>testng</artifactId>
