@@ -11,6 +11,11 @@ import java.lang.annotation.Annotation;
 import java.util.Iterator;
 import java.util.Set;
 
+/**
+ * Base CDI Injector implementation
+ *
+ * @author Sergey Chernov
+ */
 public abstract class AbstractCdiInjector extends Injector {
 	protected abstract BeanManager getBeanManager();
 

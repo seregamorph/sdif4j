@@ -4,20 +4,22 @@ import com.google.inject.Inject;
 import com.google.inject.Injector;
 import com.google.inject.Singleton;
 
-import javax.enterprise.inject.Alternative;
 import javax.inject.Provider;
 
 /**
- * Initializes Guice IOC as Injector implementation
+ * Guice Injector implementation.
+ * This implementation is bound auto via @ImplementedBy Injector annotation.
+ *
+ * @author Sergey Chernov
  */
 @Singleton
-@Alternative // ignored by guice
+@javax.enterprise.inject.Alternative // note: ignored by guice
 public class GuiceInjector extends AbstractGuiceInjector {
 	private final Provider<Injector> injectorProvider;
 
 	// explicit creation is not assumed
 	// note that Provider is used instead of direct Injector instance
-	// due to CDI class analyze issues (NoClassDefFoundError).
+	// due to CDI class analyze issues (NoClassDefFoundError: com.google.inject.Injector).
 	@Inject
 	protected GuiceInjector(Provider<com.google.inject.Injector> injectorProvider) {
 		if (injectorProvider == null) {

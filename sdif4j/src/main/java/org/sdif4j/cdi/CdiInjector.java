@@ -1,15 +1,19 @@
 package org.sdif4j.cdi;
 
 import javax.enterprise.context.spi.CreationalContext;
-import javax.enterprise.inject.Default;
 import javax.enterprise.inject.spi.BeanManager;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
+/**
+ * CDI Injector implementation
+ *
+ * @author Sergey Chernov
+ */
 @Singleton
-@Default
+@javax.enterprise.inject.Default
 public class CdiInjector extends AbstractCdiInjector {
 	private final BeanManager beanManager;
 	private final CreationalContext creationalContext;

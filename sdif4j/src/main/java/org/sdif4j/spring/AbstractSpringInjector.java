@@ -6,6 +6,11 @@ import org.springframework.context.ApplicationContext;
 
 import javax.inject.Provider;
 
+/**
+ * Base Spring Injector implementation
+ *
+ * @author Sergey Chernov
+ */
 public abstract class AbstractSpringInjector extends Injector {
 	protected abstract ApplicationContext getContext();
 

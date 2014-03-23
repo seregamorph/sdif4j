@@ -6,6 +6,11 @@ import org.sdif4j.Injector;
 
 import javax.inject.Provider;
 
+/**
+ * Base Guice Injector implementation
+ *
+ * @author Sergey Chernov
+ */
 public abstract class AbstractGuiceInjector extends Injector {
 	protected abstract com.google.inject.Injector getGuiceInjector();
 

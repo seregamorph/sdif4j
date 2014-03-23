@@ -3,14 +3,18 @@ package org.sdif4j.spring;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
-import javax.enterprise.inject.Alternative;
 import javax.inject.Named;
 import javax.inject.Singleton;
 import java.util.concurrent.atomic.AtomicReference;
 
+/**
+ * Spring Injector implementation
+ *
+ * @author Sergey Chernov
+ */
 @Named
 @Singleton
-@Alternative
+@javax.enterprise.inject.Alternative // note: ignored by Spring
 public class SpringInjector extends AbstractSpringInjector implements ApplicationContextAware {
 	private final AtomicReference<ApplicationContext> context = new AtomicReference<ApplicationContext>();
 

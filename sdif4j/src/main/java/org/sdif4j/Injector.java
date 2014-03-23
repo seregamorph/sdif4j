@@ -1,6 +1,5 @@
 package org.sdif4j;
 
-import com.google.inject.ImplementedBy;
 import org.sdif4j.guice.GuiceInjector;
 
 import javax.inject.Provider;
@@ -11,8 +10,10 @@ import javax.inject.Provider;
  * In Spring IOC by default implemented by SpringInjector ("org.sdif4j.spring" auto-scan required).
  * <p/>
  * Note, that @ImplementedBy is ignored by Spring IOC (does not matter if Guice presents in classpath or not).
+ *
+ * @author Sergey Chernov
  */
-@ImplementedBy(GuiceInjector.class)
+@com.google.inject.ImplementedBy(GuiceInjector.class)
 public abstract class Injector {
 	/**
 	 * Attribute name for Context binding, e.g. ServletContext
