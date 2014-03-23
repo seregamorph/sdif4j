@@ -6,11 +6,11 @@ It can be helpful on developing frameworks or any reusable in DI context code.
 
 Currently supported frameworks:
 * Google Guice (3.0+)
-* Spring (3.0+)
-* PicoContainer (work in progress, dev/pico branch)
-* JavaEE CDI (JavaEE 6+) (work in progress)
+* Spring (3.0.1+)
+* PicoContainer (3.0-SNAPSHOT+, project in progress) [support is in progress, dev/pico branch]
+* JavaEE CDI (JavaEE 6+)
 
-All of it support JSR-330, but in different ways.
+All of these DI frameworks support JSR-330, but in different ways.
 
 You can find examples in sdif4j-testing* subprojects.
 
