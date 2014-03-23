@@ -7,7 +7,7 @@ It can be helpful on developing frameworks or any reusable in DI context code.
 Currently supported frameworks:
 * Google Guice (3.0+)
 * Spring (3.0+)
-* PicoContainer (work in progress)
+* PicoContainer (work in progress, dev/pico branch)
 * JavaEE CDI (JavaEE 6+) (work in progress)
 
 All of it support JSR-330, but in different ways.
