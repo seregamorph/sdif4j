@@ -44,14 +44,14 @@ public class CdiSeTest {
 		assertTrue(this.injector.getInstance(Injector.class) == injector1);
 	}
 
-	@Test(enabled = false)
+	@Test
 	public void testNamedService() {
 		IService service = injector.getInstance(IService.class, FOO_BEAN);
 		assertNotNull(service);
 		assertTrue("foo".equals(service.foo()));
 	}
 
-	@Test(enabled = false)
+	@Test
 	public void testNamedString() {
 		assertEquals(injector.getInstance(String.class, "key"), "value");
 	}
@@ -90,7 +90,7 @@ public class CdiSeTest {
 		assertTrue(testPrototype1 != testPrototype2);
 	}
 
-	@Test(enabled = false) // todo
+	@Test
 	public void testInjectMembers() {
 		class TestInjectable {
 			@Inject
