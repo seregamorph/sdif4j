@@ -14,6 +14,13 @@
 	<artifactId>sdif4j-testing-common</artifactId>
 
 	<dependencies>
+		<!--sdif4j-->
+		<dependency>
+			<groupId>org.sdif4j</groupId>
+			<artifactId>sdif4j</artifactId>
+		</dependency>
+		<!--/sdif4j-->
+
 		<dependency>
 			<groupId>javax.inject</groupId>
 			<artifactId>javax.inject</artifactId>
@@ -22,6 +29,12 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.code.findbugs</groupId>
+			<artifactId>jsr305</artifactId>
 			<optional>true</optional>
 		</dependency>
 	</dependencies>

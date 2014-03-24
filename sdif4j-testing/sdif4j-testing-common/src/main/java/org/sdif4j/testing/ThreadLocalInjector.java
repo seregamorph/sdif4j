@@ -1,4 +1,6 @@
-package org.sdif4j;
+package org.sdif4j.testing;
+
+import org.sdif4j.Injector;
 
 import javax.annotation.Nonnull;
 import java.util.LinkedList;
@@ -6,11 +8,11 @@ import java.util.LinkedList;
 /**
  * TODO javadoc
  */
-public class StaticInjector {
+public class ThreadLocalInjector {
 	private static final ThreadLocal<LinkedList<Pair<Object, Injector>>> threadLocalInjectorStack =
 			new InheritableThreadLocal<LinkedList<Pair<Object, Injector>>>();
 
-	private StaticInjector() {
+	private ThreadLocalInjector() {
 	}
 
 	/**

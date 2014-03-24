@@ -44,7 +44,7 @@
 
 		<aopalliance.version>1.0</aopalliance.version>
 		<google-guice.version>3.0</google-guice.version>
-		<!--3.0.1.RELEASE fails the test-->
+		<!--3.0.0.RELEASE fails the test-->
 		<spring.version>3.0.1.RELEASE</spring.version>
 
 		<pico2.version>2.14.3</pico2.version>
@@ -54,7 +54,6 @@
 
 	<modules>
 		<module>sdif4j</module>
-		<module>sdif4j-static</module>
 		<module>sdif4j-testing</module>
 	</modules>
 
