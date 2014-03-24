@@ -8,8 +8,6 @@ import javax.inject.Singleton;
 /**
  * Pico 2 Injector implementation
  * <p/>
- * This implementation is waiting for
- * https://github.com/picocontainer/picocontainer
  *
  * @author Sergey Chernov
  */
