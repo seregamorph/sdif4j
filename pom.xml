@@ -24,6 +24,11 @@
 		<maven.deploy.skip>false</maven.deploy.skip>
 		<maven.install.skip>false</maven.install.skip>
 
+		<maven.test.skip>false</maven.test.skip>
+		<!--to compile, but skip test execution use option
+		    -DskipTests=true-->
+		<skipTests>false</skipTests>
+
 		<!--plugin-versions-->
 		<maven-install-plugin.version>2.4</maven-install-plugin.version>
 		<maven-deploy-plugin.version>2.7</maven-deploy-plugin.version>
@@ -195,6 +200,13 @@
 						</manifestEntries>
 					</archive>
 					<outputDirectory>${project.build.directory}</outputDirectory>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<inherited>true</inherited>
+				<configuration>
+					<skipTests>${skipTests}</skipTests>
 				</configuration>
 			</plugin>
 			<plugin>

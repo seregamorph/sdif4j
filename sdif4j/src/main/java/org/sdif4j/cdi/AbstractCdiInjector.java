@@ -16,19 +16,17 @@ import java.util.Set;
  *
  * @author Sergey Chernov
  */
-public abstract class AbstractCdiInjector extends Injector {
+public abstract class AbstractCdiInjector implements Injector {
 	protected abstract BeanManager getBeanManager();
 
 	protected abstract CreationalContext getCreationalContext();
 
-	@Override
 	public <T> T getInstance(Class<T> clazz) {
 		final BeanManager bm = getBeanManager();
 		final Bean<?> bean = getBean(bm, clazz);
 		return getReference(bm, clazz, bean);
 	}
 
-	@Override
 	public <T> Provider<T> getProvider(final Class<T> clazz) {
 		final BeanManager bm = getBeanManager();
 		final Bean<?> bean = getBean(bm, clazz);
@@ -39,7 +37,6 @@ public abstract class AbstractCdiInjector extends Injector {
 		};
 	}
 
-	@Override
 	public <T> T getInstance(Class<T> clazz, String name) {
 		final BeanManager bm = getBeanManager();
 		final Bean<?> bean = getBean(bm, clazz, name);
@@ -47,7 +44,6 @@ public abstract class AbstractCdiInjector extends Injector {
 	}
 
 	@SuppressWarnings("unchecked")
-	@Override
 	public void injectMembers(Object instance) {
 		final BeanManager bm = getBeanManager();
 

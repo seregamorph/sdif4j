@@ -26,7 +26,7 @@ import javax.inject.Provider;
  * @author Sergey Chernov
  */
 @com.google.inject.ImplementedBy(GuiceInjector.class)
-public abstract class Injector {
+public interface Injector {
 	/**
 	 * Attribute name for Context binding, e.g. ServletContext
 	 */
@@ -39,7 +39,7 @@ public abstract class Injector {
 	 * @param <T>
 	 * @return class instance Provider
 	 */
-	public abstract <T> Provider<T> getProvider(Class<T> clazz);
+	public <T> Provider<T> getProvider(Class<T> clazz);
 
 	/**
 	 * Get class instance via DI implementation.
@@ -48,7 +48,7 @@ public abstract class Injector {
 	 * @param <T>
 	 * @return class instance
 	 */
-	public abstract <T> T getInstance(Class<T> clazz);
+	public <T> T getInstance(Class<T> clazz);
 
 	/**
 	 * Get class named instance via DI implementation.
@@ -58,12 +58,12 @@ public abstract class Injector {
 	 * @param <T>
 	 * @return named class instance
 	 */
-	public abstract <T> T getInstance(Class<T> clazz, String name);
+	public <T> T getInstance(Class<T> clazz, String name);
 
 	/**
 	 * Inject instance members
 	 *
 	 * @param instance
 	 */
-	public abstract void injectMembers(Object instance);
+	public void injectMembers(Object instance);
 }

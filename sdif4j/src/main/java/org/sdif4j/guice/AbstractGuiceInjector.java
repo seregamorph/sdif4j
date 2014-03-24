@@ -11,25 +11,21 @@ import javax.inject.Provider;
  *
  * @author Sergey Chernov
  */
-public abstract class AbstractGuiceInjector extends Injector {
+public abstract class AbstractGuiceInjector implements Injector {
 	protected abstract com.google.inject.Injector getGuiceInjector();
 
-	@Override
 	public final <T> Provider<T> getProvider(Class<T> clazz) {
 		return getGuiceInjector().getProvider(clazz);
 	}
 
-	@Override
 	public final <T> T getInstance(Class<T> clazz) {
 		return getGuiceInjector().getInstance(clazz);
 	}
 
-	@Override
 	public final <T> T getInstance(Class<T> clazz, String name) {
 		return getGuiceInjector().getInstance(Key.get(clazz, Names.named(name)));
 	}
 
-	@Override
 	public final void injectMembers(Object instance) {
 		getGuiceInjector().injectMembers(instance);
 	}
