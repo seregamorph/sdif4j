@@ -72,6 +72,11 @@
 
 		<pico2.version>2.14.3</pico2.version>
 
+		<!--<dagger.version>1.2.1</dagger.version>-->
+		<dagger.version>1.1.0</dagger.version>
+		<dagger-compiler.version>1.1.0</dagger-compiler.version>
+		<dagger-javawriter.version>2.1.1</dagger-javawriter.version>
+
 		<testng.version>6.8.7</testng.version>
 	</properties>
 
@@ -80,6 +85,7 @@
 		<module>sdif4j-guice-stub</module>
 
 		<module>sdif4j-cdi</module>
+		<module>sdif4j-dagger</module>
 		<module>sdif4j-guice</module>
 		<module>sdif4j-pico2</module>
 		<module>sdif4j-spring</module>
@@ -100,6 +106,11 @@
 			<dependency>
 				<groupId>org.sdif4j</groupId>
 				<artifactId>sdif4j-cdi</artifactId>
+				<version>${sdif4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.sdif4j</groupId>
+				<artifactId>sdif4j-dagger</artifactId>
 				<version>${sdif4j.version}</version>
 			</dependency>
 			<dependency>
@@ -200,6 +211,23 @@
 				<groupId>org.picocontainer</groupId>
 				<artifactId>picocontainer</artifactId>
 				<version>${pico2.version}</version>
+			</dependency>
+
+			<!--dagger-->
+			<dependency>
+				<groupId>com.squareup.dagger</groupId>
+				<artifactId>dagger</artifactId>
+				<version>${dagger.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.squareup.dagger</groupId>
+				<artifactId>dagger-compiler</artifactId>
+				<version>${dagger-compiler.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.squareup</groupId>
+				<artifactId>javawriter</artifactId>
+				<version>${dagger-javawriter.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
