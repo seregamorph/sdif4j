@@ -10,9 +10,16 @@
 	<version>1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
 	<properties>
 		<!--sdif4j-->
-		<!--do not do so!--><!--<sdif4j.version>${project.version}</sdif4j.version>-->
 		<sdif4j.version>1.0-SNAPSHOT</sdif4j.version>
 		<!--/sdif4j-->
 
@@ -25,7 +32,7 @@
 		<maven.install.skip>false</maven.install.skip>
 
 		<maven.test.skip>false</maven.test.skip>
-		<!--to compile, but skip test execution use option
+		<!--to compile tests, but skip test execution use option
 		    -DskipTests=true-->
 		<skipTests>false</skipTests>
 

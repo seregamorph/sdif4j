@@ -11,6 +11,24 @@
 	</parent>
 
 	<artifactId>sdif4j</artifactId>
+	<packaging>jar</packaging>
+
+	<name>sdif4j</name>
+	<description>sdif4j is a Simple Dependency Injection Facade for Java</description>
+	<url>https://github.com/sdif4j/sdif4j</url>
+	<!--<url>http://sdif4j.org</url>-->
+
+	<scm>
+		<url>https://github.com/sdif4j/sdif4j.git</url>
+	</scm>
+
+	<developers>
+		<developer>
+			<id>seregamorph</id>
+			<name>Sergey Chernov</name>
+			<email>serega.morph@gmail.com</email>
+		</developer>
+	</developers>
 
 	<dependencies>
 		<dependency>
@@ -48,4 +66,21 @@
 			<optional>true</optional>
 		</dependency>
 	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 </project>
