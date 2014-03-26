@@ -77,6 +77,7 @@
 
 	<modules>
 		<module>sdif4j-api</module>
+		<module>sdif4j-guice-stub</module>
 
 		<module>sdif4j-cdi</module>
 		<module>sdif4j-guice</module>

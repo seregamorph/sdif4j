@@ -21,5 +21,17 @@
 			<artifactId>javax.inject</artifactId>
 			<optional>true</optional>
 		</dependency>
+
+		<dependency>
+			<groupId>com.google.inject</groupId>
+			<artifactId>guice</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.sdif4j</groupId>
+			<artifactId>sdif4j-guice-stub</artifactId>
+			<version>${sdif4j.version}</version>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 </project>

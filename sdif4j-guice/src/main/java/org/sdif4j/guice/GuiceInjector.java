@@ -6,7 +6,11 @@ import com.google.inject.Singleton;
 import org.sdif4j.Injector;
 
 /**
- * Guice Injector implementation
+ * Guice Injector implementation.
+ * The @ImplementedBy(GuiceInjector.class) annotation on Injector interfaces
+ * binds it by default.
+ * You can also use for binding MODULE instance, or new GuiceInjector.Module(),
+ * first is preffered.
  *
  * @author Sergey Chernov
  */

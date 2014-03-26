@@ -1,5 +1,8 @@
 package org.sdif4j;
 
+import com.google.inject.ImplementedBy;
+import org.sdif4j.guice.GuiceInjector;
+
 import javax.inject.Provider;
 
 /**
@@ -20,6 +23,10 @@ import javax.inject.Provider;
  *
  * @author Sergey Chernov
  */
+// note, that this is GuiceInjector from sdif4j-guice-stub, not sdif4j-guice, just for compilation.
+// it's a hack for default binding and ability to separate maven modules.
+// that's why it is highlighted in your IDE
+@ImplementedBy(GuiceInjector.class)
 public interface Injector {
 	/**
 	 * Attribute name for Context binding, e.g. ServletContext
