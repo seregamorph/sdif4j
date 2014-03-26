@@ -20,21 +20,27 @@
 
 	<dependencies>
 		<!--sdif4j-->
+		<!--todo exclude from package?-->
 		<dependency>
 			<groupId>org.sdif4j</groupId>
 			<artifactId>sdif4j-api</artifactId>
+			<optional>true</optional>
 		</dependency>
+
 		<dependency>
 			<groupId>org.sdif4j</groupId>
 			<artifactId>sdif4j-guice</artifactId>
+			<optional>true</optional>
 		</dependency>
 		<dependency>
 			<groupId>org.sdif4j</groupId>
 			<artifactId>sdif4j-pico2</artifactId>
+			<optional>true</optional>
 		</dependency>
 		<dependency>
 			<groupId>org.sdif4j</groupId>
 			<artifactId>sdif4j-spring</artifactId>
+			<optional>true</optional>
 		</dependency>
 		<!--/sdif4j-->
 	</dependencies>
