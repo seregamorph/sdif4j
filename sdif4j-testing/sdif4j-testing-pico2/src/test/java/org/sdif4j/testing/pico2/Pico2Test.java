@@ -18,6 +18,7 @@ import org.testng.annotations.Test;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.inject.Provider;
 
 import static org.testng.Assert.*;
 
@@ -34,7 +35,7 @@ public class Pico2Test {
 		assertTrue(picoContainer1 == picoContainer2);
 
 		final Pico2Injector PicoInjector = picoContainer.getComponent(Pico2Injector.class);
-		assertTrue(PicoInjector.getPicoContainerAccessor() == picoContainer);
+//		assertTrue(PicoInjector.getPicoContainerAccessor() == picoContainer);
 
 		final Pico2Injector picoInjector1 = picoContainer.getComponent(Pico2Injector.class);
 		assertTrue(PicoInjector == picoInjector1);
@@ -52,7 +53,11 @@ public class Pico2Test {
 				.build();
 
 		picoContainer.addComponent(PicoContainer.class, picoContainer);
-		picoContainer.as(Characteristics.CACHE).addComponent(Pico2Injector.class);
+		picoContainer.as(Characteristics.CACHE).addComponent(Pico2Injector.class, new Pico2Injector(new Provider<PicoContainer>() {
+			public PicoContainer get() {
+				return picoContainer;
+			}
+		}));
 
 		picoContainer.as(Characteristics.CACHE).addComponent(TestLazySingleton.class);
 		picoContainer.as(Characteristics.CACHE).addComponent(TestSingleton.class);
