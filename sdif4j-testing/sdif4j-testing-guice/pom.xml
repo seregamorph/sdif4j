@@ -14,12 +14,10 @@
 	<artifactId>sdif4j-testing-guice</artifactId>
 
 	<dependencies>
-		<!--testing-->
-
 		<!--sdif4j-->
 		<dependency>
 			<groupId>org.sdif4j</groupId>
-			<artifactId>sdif4j</artifactId>
+			<artifactId>sdif4j-guice</artifactId>
 			<scope>test</scope>
 		</dependency>
 		<dependency>

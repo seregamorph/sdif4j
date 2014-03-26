@@ -18,7 +18,6 @@ import org.testng.annotations.Test;
 
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.inject.Provider;
 
 import static org.testng.Assert.*;
 
@@ -53,11 +52,7 @@ public class Pico2Test {
 				.build();
 
 		picoContainer.addComponent(PicoContainer.class, picoContainer);
-		picoContainer.as(Characteristics.CACHE).addComponent(Pico2Injector.class, new Pico2Injector(new Provider<PicoContainer>() {
-			public PicoContainer get() {
-				return picoContainer;
-			}
-		}));
+		picoContainer.as(Characteristics.CACHE).addComponent(Pico2Injector.class);
 
 		picoContainer.as(Characteristics.CACHE).addComponent(TestLazySingleton.class);
 		picoContainer.as(Characteristics.CACHE).addComponent(TestSingleton.class);

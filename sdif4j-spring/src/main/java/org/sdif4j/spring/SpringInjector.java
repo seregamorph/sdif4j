@@ -14,7 +14,6 @@ import java.util.concurrent.atomic.AtomicReference;
  */
 @Named
 @Singleton
-@javax.enterprise.inject.Alternative // note: ignored by Spring
 public class SpringInjector extends AbstractSpringInjector implements ApplicationContextAware {
 	private final AtomicReference<ApplicationContext> context = new AtomicReference<ApplicationContext>();
 

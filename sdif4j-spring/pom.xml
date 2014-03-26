@@ -2,47 +2,42 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
 		<groupId>org.sdif4j</groupId>
-		<artifactId>sdif4j-testing-parent</artifactId>
+		<artifactId>sdif4j-parent</artifactId>
 		<version>1.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>sdif4j-testing-spring</artifactId>
+	<artifactId>sdif4j-spring</artifactId>
+	<packaging>jar</packaging>
+
+	<description>sdif4j Spring implementation</description>
 
 	<dependencies>
 		<!--sdif4j-->
 		<dependency>
 			<groupId>org.sdif4j</groupId>
-			<artifactId>sdif4j-spring</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.sdif4j</groupId>
-			<artifactId>sdif4j-testing-common</artifactId>
-			<scope>test</scope>
+			<artifactId>sdif4j-api</artifactId>
 		</dependency>
 		<!--/sdif4j-->
 
 		<dependency>
 			<groupId>javax.inject</groupId>
 			<artifactId>javax.inject</artifactId>
-			<scope>test</scope>
+			<optional>true</optional>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
-			<scope>test</scope>
+			<optional>true</optional>
 		</dependency>
-
 		<dependency>
-			<groupId>org.testng</groupId>
-			<artifactId>testng</artifactId>
-			<scope>test</scope>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<optional>true</optional>
 		</dependency>
 	</dependencies>
 </project>

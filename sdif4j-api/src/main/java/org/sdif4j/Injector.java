@@ -1,7 +1,5 @@
 package org.sdif4j;
 
-import org.sdif4j.guice.GuiceInjector;
-
 import javax.inject.Provider;
 
 /**
@@ -19,13 +17,9 @@ import javax.inject.Provider;
  * <p/>
  * General notice: when feasible, do not use this class and it's methods,
  * use javax.inject.* annotations instead.
- * <p/>
- * Note, that @ImplementedBy is ignored by Spring and CDI IOC
- * (does not matter if Guice presents in classpath or not).
  *
  * @author Sergey Chernov
  */
-@com.google.inject.ImplementedBy(GuiceInjector.class)
 public interface Injector {
 	/**
 	 * Attribute name for Context binding, e.g. ServletContext

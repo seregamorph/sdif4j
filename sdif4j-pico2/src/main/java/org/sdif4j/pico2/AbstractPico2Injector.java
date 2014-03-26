@@ -13,7 +13,7 @@ import java.lang.reflect.Field;
  * @author Sergey Chernov
  */
 public abstract class AbstractPico2Injector implements Injector {
-	protected abstract Provider<PicoContainer> getPicoContainerProvider();
+	protected abstract PicoContainer getPicoContainer();
 
 	public <T> Provider<T> getProvider(final Class<T> clazz) {
 		return new Provider<T>() {
@@ -26,15 +26,15 @@ public abstract class AbstractPico2Injector implements Injector {
 	}
 
 	public <T> T getInstance(Class<T> clazz) {
-		return getPicoContainerProvider().get().getComponent(clazz);
+		return getPicoContainer().getComponent(clazz);
 	}
 
 	public <T> T getInstance(Class<T> clazz, String name) {
-		return clazz.cast(getPicoContainerProvider().get().getComponent(name));
+		return clazz.cast(getPicoContainer().getComponent(name));
 	}
 
 	public void injectMembers(Object instance) {
-		final PicoContainer pc = getPicoContainerProvider().get();
+		final PicoContainer pc = getPicoContainer();
 		final Class<?> clazz = instance.getClass();
 		for (Field field : clazz.getDeclaredFields()) {
 			if (field.isAnnotationPresent(Inject.class)) {

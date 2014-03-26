@@ -18,6 +18,21 @@
 		</license>
 	</licenses>
 
+	<url>https://github.com/sdif4j/sdif4j</url>
+	<!--<url>http://sdif4j.org</url>-->
+
+	<scm>
+		<url>https://github.com/sdif4j/sdif4j.git</url>
+	</scm>
+
+	<developers>
+		<developer>
+			<id>seregamorph</id>
+			<name>Sergey Chernov</name>
+			<email>serega.morph@gmail.com</email>
+		</developer>
+	</developers>
+
 	<properties>
 		<!--sdif4j-->
 		<sdif4j.version>1.0-SNAPSHOT</sdif4j.version>
@@ -60,7 +75,13 @@
 	</properties>
 
 	<modules>
-		<module>sdif4j</module>
+		<module>sdif4j-api</module>
+
+		<module>sdif4j-cdi</module>
+		<module>sdif4j-guice</module>
+		<module>sdif4j-pico2</module>
+		<module>sdif4j-spring</module>
+
 		<module>sdif4j-testing</module>
 	</modules>
 
@@ -69,7 +90,27 @@
 			<!--sdif4j-->
 			<dependency>
 				<groupId>org.sdif4j</groupId>
-				<artifactId>sdif4j</artifactId>
+				<artifactId>sdif4j-api</artifactId>
+				<version>${sdif4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.sdif4j</groupId>
+				<artifactId>sdif4j-cdi</artifactId>
+				<version>${sdif4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.sdif4j</groupId>
+				<artifactId>sdif4j-guice</artifactId>
+				<version>${sdif4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.sdif4j</groupId>
+				<artifactId>sdif4j-pico2</artifactId>
+				<version>${sdif4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.sdif4j</groupId>
+				<artifactId>sdif4j-spring</artifactId>
 				<version>${sdif4j.version}</version>
 			</dependency>
 			<!--/sdif4j-->
@@ -216,6 +257,18 @@
 					</archive>
 					<outputDirectory>${project.build.directory}</outputDirectory>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
 				<artifactId>maven-surefire-plugin</artifactId>

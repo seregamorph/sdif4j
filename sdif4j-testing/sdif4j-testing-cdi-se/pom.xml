@@ -17,11 +17,13 @@
 		<!--sdif4j-->
 		<dependency>
 			<groupId>org.sdif4j</groupId>
-			<artifactId>sdif4j</artifactId>
+			<artifactId>sdif4j-cdi</artifactId>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.sdif4j</groupId>
 			<artifactId>sdif4j-testing-common</artifactId>
+			<scope>test</scope>
 		</dependency>
 		<!--/sdif4j-->
 

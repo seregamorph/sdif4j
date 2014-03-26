@@ -14,12 +14,10 @@
 	<artifactId>sdif4j-testing-pico2</artifactId>
 
 	<dependencies>
-		<!--testing-->
-
 		<!--sdif4j-->
 		<dependency>
 			<groupId>org.sdif4j</groupId>
-			<artifactId>sdif4j</artifactId>
+			<artifactId>sdif4j-pico2</artifactId>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
