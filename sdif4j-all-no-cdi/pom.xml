@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.sdif4j</groupId>
+		<artifactId>sdif4j-parent</artifactId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>sdif4j-all-no-cdi</artifactId>
+	<packaging>jar</packaging>
+
+	<description>
+		sdif4j implementation package: sdif4j-api, sdif4j-guice, sdif4j-pico2, sdif4j-spring.
+		sdif4j-cdi is not included, because CDI loaders cause NoClassDefFoundError (no workaround for now)
+	</description>
+
+	<dependencies>
+		<!--sdif4j-->
+		<dependency>
+			<groupId>org.sdif4j</groupId>
+			<artifactId>sdif4j-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.sdif4j</groupId>
+			<artifactId>sdif4j-guice</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.sdif4j</groupId>
+			<artifactId>sdif4j-pico2</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.sdif4j</groupId>
+			<artifactId>sdif4j-spring</artifactId>
+		</dependency>
+		<!--/sdif4j-->
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>jar-with-dependencies</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<descriptorRefs>
+								<descriptorRef>jar-with-dependencies</descriptorRef>
+							</descriptorRefs>
+							<finalName>${project.artifactId}-${project.version}</finalName>
+							<appendAssemblyId>false</appendAssemblyId>
+							<archive>
+								<manifestEntries>
+									<!--filled in by CI-->
+									<!--suppress MavenModelInspection -->
+									<Implementation-version>${build.number}</Implementation-version>
+									<!--suppress MavenModelInspection -->
+									<Hash-version>${build.vcs.number}</Hash-version>
+								</manifestEntries>
+							</archive>
+							<outputDirectory>${project.build.directory}</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>

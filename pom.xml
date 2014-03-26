@@ -84,6 +84,8 @@
 		<module>sdif4j-pico2</module>
 		<module>sdif4j-spring</module>
 
+		<module>sdif4j-all-no-cdi</module>
+
 		<module>sdif4j-testing</module>
 	</modules>
 

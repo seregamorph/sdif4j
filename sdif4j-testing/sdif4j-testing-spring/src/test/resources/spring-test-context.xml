@@ -7,7 +7,7 @@
 
 	<context:mbean-export/>
 
-	<import resource="classpath:spring-sdif4j-context.xml"/>
+	<import resource="classpath:sdif4j-spring-context.xml"/>
 
 	<context:component-scan base-package="org.sdif4j.testing"/>
 
