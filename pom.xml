@@ -45,6 +45,7 @@
 
 		<maven.deploy.skip>false</maven.deploy.skip>
 		<maven.install.skip>false</maven.install.skip>
+		<maven.javadoc.skip>false</maven.javadoc.skip>
 
 		<maven.test.skip>false</maven.test.skip>
 		<!--to compile tests, but skip test execution use option
@@ -269,6 +270,9 @@
 						</goals>
 					</execution>
 				</executions>
+				<configuration>
+					<skip>${maven.javadoc.skip}</skip>
+				</configuration>
 			</plugin>
 			<plugin>
 				<artifactId>maven-surefire-plugin</artifactId>
