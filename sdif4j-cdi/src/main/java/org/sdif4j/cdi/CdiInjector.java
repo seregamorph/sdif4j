@@ -51,20 +51,17 @@ public class CdiInjector extends AbstractCdiInjector {
 				return (BeanManager) initialContext.lookup("java:comp/env/BeanManager");
 			} catch (NamingException e1) {
 				try {
-					// JBoss
-					return (BeanManager) initialContext.lookup("BeanManager");
+					// Workaround for WELDINT-19
+					return (BeanManager) initialContext.lookup("java:app/BeanManager");
 				} catch (NamingException e2) {
-					throw new RuntimeException("Failed to lookup BeanManager");
+					try {
+						// JBoss
+						return (BeanManager) initialContext.lookup("BeanManager");
+					} catch (NamingException e3) {
+						throw new RuntimeException("Failed to lookup BeanManager");
+					}
 				}
 			}
 		}
-
-		/*
-		This does not work in TomEE, Resin, Jboss (WildFly)
-		NoClassDefFoundError: CDI
-
-		final CDI cdi = CDI.current();
-		return cdi.getBeanManager();
-		 */
 	}
 }
