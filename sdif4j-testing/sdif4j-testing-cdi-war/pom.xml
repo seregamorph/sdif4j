@@ -22,6 +22,10 @@
 		</dependency>
 		<dependency>
 			<groupId>org.sdif4j</groupId>
+			<artifactId>sdif4j-pico2</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.sdif4j</groupId>
 			<artifactId>sdif4j-testing-common</artifactId>
 		</dependency>
 		<!--/sdif4j-->
