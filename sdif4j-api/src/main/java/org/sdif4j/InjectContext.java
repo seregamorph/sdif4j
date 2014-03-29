@@ -6,16 +6,16 @@ import org.sdif4j.guice.GuiceInjectContext;
 import javax.inject.Provider;
 
 /**
- * Inject IOC encapsulation class.
+ * Inject DI encapsulation class.
  * <p/>
- * In guice IOC by default implemented by {@code org.sdif4j.guice.GuiceInjectContext}
+ * In Guice DI by default implemented by {@code org.sdif4j.guice.GuiceInjectContext}
  * (no additional binding required, auto-bound with @ImplementedBy annotation).
  * <p/>
- * In Spring IOC by default implemented by {@code org.sdif4j.spring.SpringInjectContext}
+ * In Spring DI by default implemented by {@code org.sdif4j.spring.SpringInjectContext}
  * ("org.sdif4j.spring" auto-scan required or simply add
  * &lt;import resource="classpath:spring-sdif4j-context.xml"/&gt; to your context.xml).
  * <p/>
- * In CDI IOC by default implemented by {@code org.sdif4j.cdi.CdiInjectContext}
+ * In Java EE CDI by default implemented by {@code org.sdif4j.cdi.CdiInjectContext}
  * (no additional binding required, auto-bound with @Default annotation)
  * <p/>
  * General notice: when feasible, do not use this class and it's methods,
@@ -25,7 +25,7 @@ import javax.inject.Provider;
  */
 // note, that this is GuiceInjectContext from sdif4j-guice-stub, not sdif4j-guice, just for compilation.
 // it's a hack for default binding and ability to separate maven modules without cyclic dependency.
-// that's why it is highlighted in your IDE
+// that's why it can be highlighted in your IDE
 @ImplementedBy(GuiceInjectContext.class)
 public interface InjectContext {
 	/**
