@@ -2,8 +2,8 @@ package org.sdif4j.testing.cdi;
 
 import org.jboss.weld.environment.se.Weld;
 import org.jboss.weld.environment.se.WeldContainer;
-import org.sdif4j.Injector;
-import org.sdif4j.cdi.CdiInjector;
+import org.sdif4j.InjectContext;
+import org.sdif4j.cdi.CdiInjectContext;
 import org.sdif4j.testing.ITestSingleton;
 import org.sdif4j.testing.TestLazySingleton;
 import org.sdif4j.testing.TestPrototype;
@@ -19,7 +19,7 @@ import javax.inject.Named;
 import static org.testng.Assert.*;
 
 /**
- * Simple CDI tests for {@link org.sdif4j.cdi.CdiInjector} inside SE container.
+ * Simple CDI tests for {@link org.sdif4j.cdi.CdiInjectContext} inside SE container.
  *
  * @author Pavel Shackih
  */
@@ -28,41 +28,41 @@ public class CdiSeTest {
 	static final String FOO_BEAN = "fooBean";
 	Weld weld;
 	WeldContainer container;
-	Injector injector;
+	InjectContext injectContext;
 
 	@BeforeClass
 	public void beforeClass() {
 		weld = new Weld();
 		container = weld.initialize();
-		injector = container.instance().select(Injector.class).get();
+		injectContext = container.instance().select(InjectContext.class).get();
 	}
 
 	@Test
-	public void testInjectorInstance() {
-		final Injector injector1 = this.injector;
-		assertTrue(injector1 instanceof CdiInjector);
-		assertTrue(this.injector.getInstance(Injector.class) == injector1);
+	public void testInjectContextInstance() {
+		final InjectContext injectContext = this.injectContext;
+		assertTrue(injectContext instanceof CdiInjectContext);
+		assertTrue(this.injectContext.getInstance(InjectContext.class) == injectContext);
 	}
 
 	@Test
 	public void testNamedService() {
-		IService service = injector.getInstance(IService.class, FOO_BEAN);
+		IService service = injectContext.getInstance(IService.class, FOO_BEAN);
 		assertNotNull(service);
 		assertTrue("foo".equals(service.foo()));
 	}
 
 	@Test
 	public void testNamedString() {
-		assertEquals(injector.getInstance(String.class, "key"), "value");
+		assertEquals(injectContext.getInstance(String.class, "key"), "value");
 	}
 
 	@Test
 	public void testSingleton() {
 		assertEquals(TestSingleton.getInstantCount(), 0);
-		final ITestSingleton iTestSingleton1 = injector.getInstance(ITestSingleton.class);
-		final ITestSingleton iTestSingleton2 = injector.getInstance(ITestSingleton.class);
-		final TestSingleton testSingleton1 = injector.getInstance(TestSingleton.class);
-		final TestSingleton testSingleton2 = injector.getInstance(TestSingleton.class);
+		final ITestSingleton iTestSingleton1 = injectContext.getInstance(ITestSingleton.class);
+		final ITestSingleton iTestSingleton2 = injectContext.getInstance(ITestSingleton.class);
+		final TestSingleton testSingleton1 = injectContext.getInstance(TestSingleton.class);
+		final TestSingleton testSingleton2 = injectContext.getInstance(TestSingleton.class);
 		assertEquals(TestSingleton.getInstantCount(), 1);
 
 		assertNotNull(iTestSingleton1);
@@ -74,8 +74,8 @@ public class CdiSeTest {
 	@Test
 	public void testLazySingleton() {
 		assertEquals(TestLazySingleton.getInstantCount(), 0);
-		final TestLazySingleton s1 = injector.getInstance(TestLazySingleton.class);
-		final TestLazySingleton s2 = injector.getInstance(TestLazySingleton.class);
+		final TestLazySingleton s1 = injectContext.getInstance(TestLazySingleton.class);
+		final TestLazySingleton s2 = injectContext.getInstance(TestLazySingleton.class);
 		assertEquals(TestLazySingleton.getInstantCount(), 1);
 		assertNotNull(s1);
 		assertTrue(s1 == s2);
@@ -83,8 +83,8 @@ public class CdiSeTest {
 
 	@Test
 	public void testPrototype() {
-		final TestPrototype testPrototype1 = injector.getInstance(TestPrototype.class);
-		final TestPrototype testPrototype2 = injector.getInstance(TestPrototype.class);
+		final TestPrototype testPrototype1 = injectContext.getInstance(TestPrototype.class);
+		final TestPrototype testPrototype2 = injectContext.getInstance(TestPrototype.class);
 		assertNotNull(testPrototype1);
 		assertNotNull(testPrototype2);
 		assertTrue(testPrototype1 != testPrototype2);
@@ -98,7 +98,7 @@ public class CdiSeTest {
 			String testKey;
 		}
 		final TestInjectable testInjectable = new TestInjectable();
-		injector.injectMembers(testInjectable);
+		injectContext.injectMembers(testInjectable);
 		assertEquals(testInjectable.testKey, "value");
 	}
 

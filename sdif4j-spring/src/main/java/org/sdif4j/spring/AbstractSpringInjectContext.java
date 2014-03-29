@@ -1,17 +1,17 @@
 package org.sdif4j.spring;
 
-import org.sdif4j.Injector;
+import org.sdif4j.InjectContext;
 import org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor;
 import org.springframework.context.ApplicationContext;
 
 import javax.inject.Provider;
 
 /**
- * Base Spring Injector implementation
+ * Base Spring InjectContext implementation
  *
  * @author Sergey Chernov
  */
-public abstract class AbstractSpringInjector implements Injector {
+public abstract class AbstractSpringInjectContext implements InjectContext {
 	protected abstract ApplicationContext getContext();
 
 	public <T> Provider<T> getProvider(final Class<T> clazz) {

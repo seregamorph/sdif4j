@@ -7,9 +7,9 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
- * This test just shows the Injector inheritance via @Guice annotation in super-class.
+ * This test just shows the InjectContext inheritance via @Guice annotation in super-class.
  * <p/>
- * Note, that this class should have exactly the same Injector (both guice and sdif4j) instance.
+ * Note, that this class should have exactly the same InjectContext (both guice and sdif4j) instance.
  */
 public class GuiceInheritTest extends GuiceTest {
 	@Inject

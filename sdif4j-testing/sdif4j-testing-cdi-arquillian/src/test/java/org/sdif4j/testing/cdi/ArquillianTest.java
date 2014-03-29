@@ -5,8 +5,8 @@ import org.jboss.arquillian.testng.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.sdif4j.Injector;
-import org.sdif4j.cdi.CdiInjector;
+import org.sdif4j.InjectContext;
+import org.sdif4j.cdi.CdiInjectContext;
 import org.sdif4j.testing.ITestSingleton;
 import org.sdif4j.testing.TestLazySingleton;
 import org.sdif4j.testing.TestPrototype;
@@ -19,7 +19,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
- * Simple CDI tests for {@link org.sdif4j.cdi.CdiInjector} inside {@code Arquillian} container.
+ * Simple CDI tests for {@link org.sdif4j.cdi.CdiInjectContext} inside {@code Arquillian} container.
  *
  * @author Pavel Shackih
  */
@@ -32,40 +32,40 @@ public class ArquillianTest extends Arquillian {
 		return ShrinkWrap.create(JavaArchive.class)
 				// we need to build our own jar for container
 				.addPackage("org.sdif4j.cdi")
-				.addClass(Injector.class)
+				.addClass(InjectContext.class)
 				.addPackage("org.sdif4j.testing")
 				.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
 	}
 
 	@Inject
-	Injector injector;
+	InjectContext injectContext;
 
 	@Test
-	public void testInjectorInstance() {
-		final Injector injector1 = this.injector;
-		Assert.assertTrue(injector1 instanceof CdiInjector);
-		Assert.assertTrue(this.injector.getInstance(Injector.class) == injector1);
+	public void testInjectContextInstance() {
+		final InjectContext injectContext = this.injectContext;
+		Assert.assertTrue(injectContext instanceof CdiInjectContext);
+		Assert.assertTrue(this.injectContext.getInstance(InjectContext.class) == injectContext);
 	}
 
 	@Test
 	public void testNamedService() {
-		IService service = injector.getInstance(IService.class, FOO_BEAN);
+		IService service = injectContext.getInstance(IService.class, FOO_BEAN);
 		Assert.assertNotNull(service);
 		Assert.assertTrue("foo".equals(service.foo()));
 	}
 
 	@Test
 	public void testNamedString() {
-		Assert.assertEquals(injector.getInstance(String.class, "key"), "value");
+		Assert.assertEquals(injectContext.getInstance(String.class, "key"), "value");
 	}
 
 	@Test
 	public void testSingleton() {
 		Assert.assertEquals(TestSingleton.getInstantCount(), 0);
-		final ITestSingleton iTestSingleton1 = injector.getInstance(ITestSingleton.class);
-		final ITestSingleton iTestSingleton2 = injector.getInstance(ITestSingleton.class);
-		final TestSingleton testSingleton1 = injector.getInstance(TestSingleton.class);
-		final TestSingleton testSingleton2 = injector.getInstance(TestSingleton.class);
+		final ITestSingleton iTestSingleton1 = injectContext.getInstance(ITestSingleton.class);
+		final ITestSingleton iTestSingleton2 = injectContext.getInstance(ITestSingleton.class);
+		final TestSingleton testSingleton1 = injectContext.getInstance(TestSingleton.class);
+		final TestSingleton testSingleton2 = injectContext.getInstance(TestSingleton.class);
 		Assert.assertEquals(TestSingleton.getInstantCount(), 1);
 
 		Assert.assertNotNull(iTestSingleton1);
@@ -77,8 +77,8 @@ public class ArquillianTest extends Arquillian {
 	@Test
 	public void testLazySingleton() {
 		Assert.assertEquals(TestLazySingleton.getInstantCount(), 0);
-		final TestLazySingleton s1 = injector.getInstance(TestLazySingleton.class);
-		final TestLazySingleton s2 = injector.getInstance(TestLazySingleton.class);
+		final TestLazySingleton s1 = injectContext.getInstance(TestLazySingleton.class);
+		final TestLazySingleton s2 = injectContext.getInstance(TestLazySingleton.class);
 		Assert.assertEquals(TestLazySingleton.getInstantCount(), 1);
 		Assert.assertNotNull(s1);
 		Assert.assertTrue(s1 == s2);
@@ -86,8 +86,8 @@ public class ArquillianTest extends Arquillian {
 
 	@Test
 	public void testPrototype() {
-		final TestPrototype testPrototype1 = injector.getInstance(TestPrototype.class);
-		final TestPrototype testPrototype2 = injector.getInstance(TestPrototype.class);
+		final TestPrototype testPrototype1 = injectContext.getInstance(TestPrototype.class);
+		final TestPrototype testPrototype2 = injectContext.getInstance(TestPrototype.class);
 		Assert.assertNotNull(testPrototype1);
 		Assert.assertNotNull(testPrototype2);
 		Assert.assertTrue(testPrototype1 != testPrototype2);
@@ -101,7 +101,7 @@ public class ArquillianTest extends Arquillian {
 			String testKey;
 		}
 		final TestInjectable testInjectable = new TestInjectable();
-		injector.injectMembers(testInjectable);
+		injectContext.injectMembers(testInjectable);
 		Assert.assertEquals(testInjectable.testKey, "value");
 	}
 

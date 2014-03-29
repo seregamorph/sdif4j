@@ -1,7 +1,7 @@
 package org.sdif4j.testing.cdi;
 
-import org.sdif4j.Injector;
-import org.sdif4j.cdi.CdiInjector;
+import org.sdif4j.InjectContext;
+import org.sdif4j.cdi.CdiInjectContext;
 import org.sdif4j.testing.ITestSingleton;
 import org.sdif4j.testing.TestLazySingleton;
 import org.sdif4j.testing.TestPrototype;
@@ -29,9 +29,9 @@ public class TestServlet extends HttpServlet {
 	@Inject
 	private BeanManager beanManager;
 	@Inject
-	private Injector injector;
+	private InjectContext injectContext;
 	@Inject
-	private Injector injector1;
+	private InjectContext injectContext1;
 	@Inject
 	@Named("key")
 	private String testKey;
@@ -54,8 +54,8 @@ public class TestServlet extends HttpServlet {
 			pw.println("testAutoInject");
 			testAutoInject();
 
-			pw.println("testInjectorInstance");
-			testInjectorInstance();
+			pw.println("testInjectContextInstance");
+			testInjectContextInstance();
 
 			pw.println("testNamed");
 			testNamed();
@@ -82,32 +82,32 @@ public class TestServlet extends HttpServlet {
 	}
 
 	//	@Test
-	public void testInjectorInstance() {
-		final Injector injector1 = this.injector;
-		assertTrue(injector1 instanceof CdiInjector);
-		assertTrue(this.injector.getInstance(Injector.class) == injector1);
-		assertTrue(this.injector1 == injector1);
+	public void testInjectContextInstance() {
+		final InjectContext injectContext = this.injectContext;
+		assertTrue(injectContext instanceof CdiInjectContext);
+		assertTrue(this.injectContext.getInstance(InjectContext.class) == injectContext);
+		assertTrue(this.injectContext1 == injectContext);
 
-		final BeanManager beanManager = this.injector.getInstance(BeanManager.class);
+		final BeanManager beanManager = this.injectContext.getInstance(BeanManager.class);
 		assertTrue(this.beanManager == beanManager);
 
-		final BeanManager lookup = CdiInjector.lookupBeanManager();
+		final BeanManager lookup = CdiInjectContext.lookupBeanManager();
 //		assertTrue(lookup.equals(beanManager));
 	}
 
 	//	@Test
 	public void testNamed() {
-		assertEquals(injector.getInstance(String.class, "key"), "value");
+		assertEquals(injectContext.getInstance(String.class, "key"), "value");
 	}
 
 	//	@Test
 	public void testSingleton(boolean first) {
 		assertEquals(TestSingleton.getInstantCount(), first ? 0 : 1);
 
-		final ITestSingleton is1 = injector.getInstance(ITestSingleton.class);
-		final ITestSingleton is2 = injector.getInstance(ITestSingleton.class);
-		final TestSingleton s1 = injector.getInstance(TestSingleton.class);
-		final TestSingleton s2 = injector.getInstance(TestSingleton.class);
+		final ITestSingleton is1 = injectContext.getInstance(ITestSingleton.class);
+		final ITestSingleton is2 = injectContext.getInstance(ITestSingleton.class);
+		final TestSingleton s1 = injectContext.getInstance(TestSingleton.class);
+		final TestSingleton s2 = injectContext.getInstance(TestSingleton.class);
 
 		assertEquals(TestSingleton.getInstantCount(), 1);
 		assertNotNull(is1);
@@ -119,8 +119,8 @@ public class TestServlet extends HttpServlet {
 	//	@Test
 	public void testLazySingleton(boolean first) {
 		assertEquals(TestLazySingleton.getInstantCount(), first ? 0 : 1);
-		final TestLazySingleton s1 = injector.getInstance(TestLazySingleton.class);
-		final TestLazySingleton s2 = injector.getInstance(TestLazySingleton.class);
+		final TestLazySingleton s1 = injectContext.getInstance(TestLazySingleton.class);
+		final TestLazySingleton s2 = injectContext.getInstance(TestLazySingleton.class);
 		assertEquals(TestLazySingleton.getInstantCount(), 1);
 		assertNotNull(s1);
 		assertTrue(s1 == s2);
@@ -128,8 +128,8 @@ public class TestServlet extends HttpServlet {
 
 	//	@Test
 	public void testPrototype() {
-		final TestPrototype testPrototype1 = injector.getInstance(TestPrototype.class);
-		final TestPrototype testPrototype2 = injector.getInstance(TestPrototype.class);
+		final TestPrototype testPrototype1 = injectContext.getInstance(TestPrototype.class);
+		final TestPrototype testPrototype2 = injectContext.getInstance(TestPrototype.class);
 		assertNotNull(testPrototype1);
 		assertNotNull(testPrototype2);
 		assertTrue(testPrototype1 != testPrototype2);
@@ -143,7 +143,7 @@ public class TestServlet extends HttpServlet {
 			String testKey;
 		}
 		final TestInjectable testInjectable = new TestInjectable();
-		injector.injectMembers(testInjectable);
+		injectContext.injectMembers(testInjectable);
 		assertEquals(testInjectable.testKey, "value");
 	}
 }

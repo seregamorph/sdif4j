@@ -8,18 +8,18 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
 /**
- * CDI Injector implementation
+ * CDI InjectContext implementation
  *
  * @author Sergey Chernov
  */
 @Singleton
 @javax.enterprise.inject.Default
-public class CdiInjector extends AbstractCdiInjector {
+public class CdiInjectContext extends AbstractCdiInjectContext {
 	private final BeanManager beanManager;
 	private final CreationalContext creationalContext;
 
 	@Inject
-	protected CdiInjector(BeanManager beanManager) {
+	protected CdiInjectContext(BeanManager beanManager) {
 		this.beanManager = beanManager;
 		this.creationalContext = beanManager.createCreationalContext(null);
 	}

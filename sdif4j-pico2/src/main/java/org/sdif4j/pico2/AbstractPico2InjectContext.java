@@ -1,18 +1,18 @@
 package org.sdif4j.pico2;
 
 import org.picocontainer.PicoContainer;
-import org.sdif4j.Injector;
+import org.sdif4j.InjectContext;
 
 import javax.inject.Inject;
 import javax.inject.Provider;
 import java.lang.reflect.Field;
 
 /**
- * Base Pico 2 Injector implementation
+ * Base Pico 2 InjectContext implementation
  *
  * @author Sergey Chernov
  */
-public abstract class AbstractPico2Injector implements Injector {
+public abstract class AbstractPico2InjectContext implements InjectContext {
 	protected abstract PicoContainer getPicoContainer();
 
 	public <T> Provider<T> getProvider(final Class<T> clazz) {

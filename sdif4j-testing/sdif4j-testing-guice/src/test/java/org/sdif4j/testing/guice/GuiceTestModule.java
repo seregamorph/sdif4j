@@ -8,7 +8,7 @@ import org.sdif4j.testing.TestSingleton;
 public class GuiceTestModule extends AbstractModule {
 	@Override
 	protected void configure() {
-//		install(GuiceInjector.MODULE);
+//		install(GuiceInjectContext.MODULE);
 
 		bind(String.class).annotatedWith(Names.named("key")).toInstance("value");
 		bind(ITestSingleton.class).to(TestSingleton.class);

@@ -8,17 +8,17 @@ import javax.inject.Singleton;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
- * Spring Injector implementation
+ * Spring InjectContext implementation
  *
  * @author Sergey Chernov
  */
 @Named
 @Singleton
-public class SpringInjector extends AbstractSpringInjector implements ApplicationContextAware {
+public class SpringInjectContext extends AbstractSpringInjectContext implements ApplicationContextAware {
 	private final AtomicReference<ApplicationContext> context = new AtomicReference<ApplicationContext>();
 
 	// explicit creation is not assumed
-	protected SpringInjector() {
+	protected SpringInjectContext() {
 	}
 
 	public void setApplicationContext(ApplicationContext context) {

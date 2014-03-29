@@ -4,7 +4,7 @@
 http://java.sun.com/xml/ns/javaee/beans_1_1.xsd"
 		>
 	<!--<alternatives>-->
-	<!--<class>org.sdif4j.guice.AbstractGuiceInjector</class>-->
-	<!--<class>org.sdif4j.guice.GuiceInjector</class>-->
+	<!--<class>org.sdif4j.guice.AbstractGuiceInjectContext</class>-->
+	<!--<class>org.sdif4j.guice.GuiceInjectContext</class>-->
 	<!--</alternatives>-->
 </beans>

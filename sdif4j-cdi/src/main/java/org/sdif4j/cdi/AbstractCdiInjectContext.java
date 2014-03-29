@@ -1,6 +1,6 @@
 package org.sdif4j.cdi;
 
-import org.sdif4j.Injector;
+import org.sdif4j.InjectContext;
 
 import javax.enterprise.context.spi.CreationalContext;
 import javax.enterprise.inject.spi.Bean;
@@ -12,11 +12,11 @@ import java.util.Iterator;
 import java.util.Set;
 
 /**
- * Base CDI Injector implementation
+ * Base CDI InjectContext implementation
  *
  * @author Sergey Chernov
  */
-public abstract class AbstractCdiInjector implements Injector {
+public abstract class AbstractCdiInjectContext implements InjectContext {
 	protected abstract BeanManager getBeanManager();
 
 	protected abstract CreationalContext getCreationalContext();

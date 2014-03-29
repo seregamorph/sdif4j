@@ -5,22 +5,22 @@ import org.picocontainer.PicoContainer;
 import javax.inject.Singleton;
 
 /**
- * Pico 2 Injector implementation
+ * Pico 2 InjectContext implementation
  * <p/>
  *
  * @author Sergey Chernov
  */
 @Singleton
-public class Pico2Injector extends AbstractPico2Injector {
+public class Pico2InjectContext extends AbstractPico2InjectContext {
 	// @org.picocontainer.annotations.Inject does not work
 	@javax.inject.Inject
 	private PicoContainer picoContainer;
 
 	// public constructor required by PicoContainer
-	public Pico2Injector() {
+	public Pico2InjectContext() {
 	}
 
-	public Pico2Injector(PicoContainer picoContainer) {
+	public Pico2InjectContext(PicoContainer picoContainer) {
 		this.picoContainer = picoContainer;
 	}
 

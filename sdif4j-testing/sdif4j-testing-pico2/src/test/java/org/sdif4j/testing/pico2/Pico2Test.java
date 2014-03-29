@@ -7,8 +7,8 @@ import org.picocontainer.PicoContainer;
 import org.picocontainer.behaviors.OptInCaching;
 import org.picocontainer.injectors.AnnotatedFieldInjection;
 import org.picocontainer.injectors.CompositeInjection;
-import org.sdif4j.Injector;
-import org.sdif4j.pico2.Pico2Injector;
+import org.sdif4j.InjectContext;
+import org.sdif4j.pico2.Pico2InjectContext;
 import org.sdif4j.testing.ITestSingleton;
 import org.sdif4j.testing.TestLazySingleton;
 import org.sdif4j.testing.TestPrototype;
@@ -22,7 +22,7 @@ import javax.inject.Named;
 import static org.testng.Assert.*;
 
 public class Pico2Test {
-	private Injector injector;
+	private InjectContext injectContext;
 
 	@BeforeClass
 	public void beforeClass() {
@@ -33,16 +33,16 @@ public class Pico2Test {
 		assertTrue(picoContainer == picoContainer1);
 		assertTrue(picoContainer1 == picoContainer2);
 
-		final Pico2Injector PicoInjector = picoContainer.getComponent(Pico2Injector.class);
-//		assertTrue(PicoInjector.getPicoContainerAccessor() == picoContainer);
+		final Pico2InjectContext pico2InjectContext = picoContainer.getComponent(Pico2InjectContext.class);
+//		assertTrue(pico2InjectContext.getPicoContainerAccessor() == picoContainer);
 
-		final Pico2Injector picoInjector1 = picoContainer.getComponent(Pico2Injector.class);
-		assertTrue(PicoInjector == picoInjector1);
+		final Pico2InjectContext pico2InjectContext1 = picoContainer.getComponent(Pico2InjectContext.class);
+		assertTrue(pico2InjectContext == pico2InjectContext1);
 
-		this.injector = picoContainer.getComponent(Injector.class);
-		final Injector injector1 = picoContainer.getComponent(Injector.class);
-		assertTrue(injector1 == this.injector);
-		assertTrue(PicoInjector == this.injector);
+		this.injectContext = picoContainer.getComponent(InjectContext.class);
+		final InjectContext injectContext = picoContainer.getComponent(InjectContext.class);
+		assertTrue(injectContext == this.injectContext);
+		assertTrue(pico2InjectContext == this.injectContext);
 	}
 
 	private MutablePicoContainer createPicoContatiner() {
@@ -52,7 +52,7 @@ public class Pico2Test {
 				.build();
 
 		picoContainer.addComponent(PicoContainer.class, picoContainer);
-		picoContainer.as(Characteristics.CACHE).addComponent(Pico2Injector.class);
+		picoContainer.as(Characteristics.CACHE).addComponent(Pico2InjectContext.class);
 
 		picoContainer.as(Characteristics.CACHE).addComponent(TestLazySingleton.class);
 		picoContainer.as(Characteristics.CACHE).addComponent(TestSingleton.class);
@@ -64,24 +64,24 @@ public class Pico2Test {
 	}
 
 	@Test
-	public void testInjectorInstance() {
-		final Injector injector1 = this.injector;
-		assertTrue(injector1 instanceof Pico2Injector);
-		assertTrue(this.injector.getInstance(Injector.class) == injector1);
+	public void testInjectContextInstance() {
+		final InjectContext injectContext = this.injectContext;
+		assertTrue(injectContext instanceof Pico2InjectContext);
+		assertTrue(this.injectContext.getInstance(InjectContext.class) == injectContext);
 	}
 
 	@Test
 	public void testNamed() {
-		assertEquals(injector.getInstance(String.class, "key"), "value");
+		assertEquals(injectContext.getInstance(String.class, "key"), "value");
 	}
 
 	@Test
 	public void testSingleton() {
 		assertEquals(TestSingleton.getInstantCount(), 0);
-		final ITestSingleton iTestSingleton1 = injector.getInstance(ITestSingleton.class);
-		final ITestSingleton iTestSingleton2 = injector.getInstance(ITestSingleton.class);
-		final TestSingleton testSingleton1 = injector.getInstance(TestSingleton.class);
-		final TestSingleton testSingleton2 = injector.getInstance(TestSingleton.class);
+		final ITestSingleton iTestSingleton1 = injectContext.getInstance(ITestSingleton.class);
+		final ITestSingleton iTestSingleton2 = injectContext.getInstance(ITestSingleton.class);
+		final TestSingleton testSingleton1 = injectContext.getInstance(TestSingleton.class);
+		final TestSingleton testSingleton2 = injectContext.getInstance(TestSingleton.class);
 		assertEquals(TestSingleton.getInstantCount(), 1);
 
 		assertNotNull(iTestSingleton1);
@@ -93,8 +93,8 @@ public class Pico2Test {
 	@Test
 	public void testLazySingleton() {
 		assertEquals(TestLazySingleton.getInstantCount(), 0);
-		final TestLazySingleton s1 = injector.getInstance(TestLazySingleton.class);
-		final TestLazySingleton s2 = injector.getInstance(TestLazySingleton.class);
+		final TestLazySingleton s1 = injectContext.getInstance(TestLazySingleton.class);
+		final TestLazySingleton s2 = injectContext.getInstance(TestLazySingleton.class);
 		assertEquals(TestLazySingleton.getInstantCount(), 1);
 		assertNotNull(s1);
 		assertTrue(s1 == s2);
@@ -102,8 +102,8 @@ public class Pico2Test {
 
 	@Test
 	public void testPrototype() {
-		final TestPrototype testPrototype1 = injector.getInstance(TestPrototype.class);
-		final TestPrototype testPrototype2 = injector.getInstance(TestPrototype.class);
+		final TestPrototype testPrototype1 = injectContext.getInstance(TestPrototype.class);
+		final TestPrototype testPrototype2 = injectContext.getInstance(TestPrototype.class);
 		assertNotNull(testPrototype1);
 		assertNotNull(testPrototype2);
 		assertTrue(testPrototype1 != testPrototype2);
@@ -117,7 +117,7 @@ public class Pico2Test {
 			String testKey;
 		}
 		final TestInjectable testInjectable = new TestInjectable();
-		injector.injectMembers(testInjectable);
+		injectContext.injectMembers(testInjectable);
 		assertEquals(testInjectable.testKey, "value");
 	}
 }
