@@ -3,10 +3,7 @@ package org.sdif4j.testing.guice;
 import com.google.inject.Injector;
 import org.sdif4j.InjectContext;
 import org.sdif4j.guice.GuiceInjectContext;
-import org.sdif4j.testing.ITestSingleton;
-import org.sdif4j.testing.TestLazySingleton;
-import org.sdif4j.testing.TestPrototype;
-import org.sdif4j.testing.TestSingleton;
+import org.sdif4j.testing.*;
 import org.testng.annotations.Guice;
 import org.testng.annotations.Test;
 
@@ -45,15 +42,13 @@ public class GuiceTest {
 	}
 
 	@Test
-	public void testSingleton() {
-		// for Guice default mode
-		assertEquals(TestSingleton.getInstantCount(), 0);
-
-		final ITestSingleton is1 = injectContext.getInstance(ITestSingleton.class);
-		final ITestSingleton is2 = injectContext.getInstance(ITestSingleton.class);
-		final TestSingleton s1 = injectContext.getInstance(TestSingleton.class);
-		final TestSingleton s2 = injectContext.getInstance(TestSingleton.class);
-		assertEquals(TestSingleton.getInstantCount(), 1);
+	public void testEagerSingleton() {
+		assertEquals(TestEagerSingleton.getInstantCount(), 1);
+		final TestSingleton is1 = injectContext.getInstance(TestSingleton.class);
+		final TestSingleton is2 = injectContext.getInstance(TestSingleton.class);
+		final TestEagerSingleton s1 = injectContext.getInstance(TestEagerSingleton.class);
+		final TestEagerSingleton s2 = injectContext.getInstance(TestEagerSingleton.class);
+		assertEquals(TestEagerSingleton.getInstantCount(), 1);
 		assertNotNull(is1);
 		assertTrue(is1 == is2);
 		assertTrue(is2 == s1);
@@ -68,6 +63,12 @@ public class GuiceTest {
 		assertEquals(TestLazySingleton.getInstantCount(), 1);
 		assertNotNull(s1);
 		assertTrue(s1 == s2);
+	}
+
+	@Test
+	public void testInjectConstructorSingleton() {
+		final InjectConstructorSingleton singleton = injectContext.getInstance(InjectConstructorSingleton.class);
+		assertTrue(singleton.getTestSingleton() == injectContext.getInstance(TestSingleton.class));
 	}
 
 	@Test

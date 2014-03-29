@@ -6,11 +6,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 @Named
 @Singleton
-@org.springframework.context.annotation.Lazy // ignored by Guice
-public class TestLazySingleton {
+public class TestEagerSingleton implements TestSingleton {
 	private static final AtomicInteger instantCounter = new AtomicInteger();
 
-	public TestLazySingleton() {
+	public TestEagerSingleton() {
 		instantCounter.incrementAndGet();
 	}
 

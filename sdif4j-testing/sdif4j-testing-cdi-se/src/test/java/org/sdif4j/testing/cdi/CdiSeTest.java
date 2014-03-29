@@ -4,7 +4,7 @@ import org.jboss.weld.environment.se.Weld;
 import org.jboss.weld.environment.se.WeldContainer;
 import org.sdif4j.InjectContext;
 import org.sdif4j.cdi.CdiInjectContext;
-import org.sdif4j.testing.ITestSingleton;
+import org.sdif4j.testing.TestEagerSingleton;
 import org.sdif4j.testing.TestLazySingleton;
 import org.sdif4j.testing.TestPrototype;
 import org.sdif4j.testing.TestSingleton;
@@ -58,17 +58,17 @@ public class CdiSeTest {
 
 	@Test
 	public void testSingleton() {
-		assertEquals(TestSingleton.getInstantCount(), 0);
-		final ITestSingleton iTestSingleton1 = injectContext.getInstance(ITestSingleton.class);
-		final ITestSingleton iTestSingleton2 = injectContext.getInstance(ITestSingleton.class);
+		assertEquals(TestEagerSingleton.getInstantCount(), 0);
 		final TestSingleton testSingleton1 = injectContext.getInstance(TestSingleton.class);
 		final TestSingleton testSingleton2 = injectContext.getInstance(TestSingleton.class);
-		assertEquals(TestSingleton.getInstantCount(), 1);
+		final TestEagerSingleton testEagerSingleton1 = injectContext.getInstance(TestEagerSingleton.class);
+		final TestEagerSingleton testEagerSingleton2 = injectContext.getInstance(TestEagerSingleton.class);
+		assertEquals(TestEagerSingleton.getInstantCount(), 1);
 
-		assertNotNull(iTestSingleton1);
-		assertTrue(iTestSingleton1 == iTestSingleton2);
-		assertTrue(iTestSingleton2 == testSingleton1);
+		assertNotNull(testSingleton1);
 		assertTrue(testSingleton1 == testSingleton2);
+		assertTrue(testSingleton2 == testEagerSingleton1);
+		assertTrue(testEagerSingleton1 == testEagerSingleton2);
 	}
 
 	@Test

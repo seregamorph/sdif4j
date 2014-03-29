@@ -7,7 +7,7 @@ import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.sdif4j.InjectContext;
 import org.sdif4j.cdi.CdiInjectContext;
-import org.sdif4j.testing.ITestSingleton;
+import org.sdif4j.testing.TestEagerSingleton;
 import org.sdif4j.testing.TestLazySingleton;
 import org.sdif4j.testing.TestPrototype;
 import org.sdif4j.testing.TestSingleton;
@@ -61,17 +61,17 @@ public class ArquillianTest extends Arquillian {
 
 	@Test
 	public void testSingleton() {
-		Assert.assertEquals(TestSingleton.getInstantCount(), 0);
-		final ITestSingleton iTestSingleton1 = injectContext.getInstance(ITestSingleton.class);
-		final ITestSingleton iTestSingleton2 = injectContext.getInstance(ITestSingleton.class);
+		Assert.assertEquals(TestEagerSingleton.getInstantCount(), 0);
 		final TestSingleton testSingleton1 = injectContext.getInstance(TestSingleton.class);
 		final TestSingleton testSingleton2 = injectContext.getInstance(TestSingleton.class);
-		Assert.assertEquals(TestSingleton.getInstantCount(), 1);
+		final TestEagerSingleton testEagerSingleton1 = injectContext.getInstance(TestEagerSingleton.class);
+		final TestEagerSingleton testEagerSingleton2 = injectContext.getInstance(TestEagerSingleton.class);
+		Assert.assertEquals(TestEagerSingleton.getInstantCount(), 1);
 
-		Assert.assertNotNull(iTestSingleton1);
-		Assert.assertTrue(iTestSingleton1 == iTestSingleton2);
-		Assert.assertTrue(iTestSingleton2 == testSingleton1);
+		Assert.assertNotNull(testSingleton1);
 		Assert.assertTrue(testSingleton1 == testSingleton2);
+		Assert.assertTrue(testSingleton2 == testEagerSingleton1);
+		Assert.assertTrue(testEagerSingleton1 == testEagerSingleton2);
 	}
 
 	@Test
